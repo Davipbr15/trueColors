@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+
+	<title>GH Pages</title>
+	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-blue-600">	
+	<div class="mx-auto">
+
+	<header>
+
+	</header>
+
+	<section class="text-center">
+
+		<h1 class="text-xl">daTrue Colors</h1>
+
+		<input id="color_selector"
+
+		class="w-16 h-16"
+
+		type="color"/>
+		<br>
+
+
+		<div class="	bg-white w-64 mx-auto">
+		<input
+		class="bg-grey-900"
+		id="hex_input" type="text">
+
+		<button
+
+		onclick="copyClipboard()">Copy to clipboard</button>
+
+		<button onclick="hexToRgb()">
+		Transformar em RGB
+		</button>
+		</div>
+	</section>
+
+	<footer>
+	</footer>
+
+	</div>
+	<script type="application/javascript">
+
+
+
+	var hex = "#e01b24";
+	var red = parseInt(hex[1]+hex[2],16);
+	var green = parseInt(hex[3]+hex[4],16);
+	var blue = parseInt(hex[5]+hex[6],16);
+	alert(red + ", " + green + ", " + blue);
+
+
+
+
+
+  	var hexColorInput = document.getElementById('hex_input'),
+    colorSelector = document.getElementById('color_selector');
+
+	var updateHex ;
+
+	(updateHex = function () {
+    	hexColorInput.value = colorSelector.value;
+	})();
+
+	colorSelector.addEventListener('input', updateHex);
+
+	function updateSelector() {
+    var val = hexColorInput.value;
+    // adiciona o '#'
+    if (val.charAt(0) !== '#') val = '#' + val;
+
+    // expande uma cor desse tamanho: fff
+    if (val.length === 4) {
+        var red = val.charAt(1);
+        red += red;
+        var green = val.charAt(2);
+        green += green;
+        var blue = val.charAt(3);
+        blue += blue;
+
+        val = '#' + red + green + blue;
+    	}
+
+    		colorSelector.value = val;
+		}	
+
+
+		['cut', 'keyup', 'paste'].forEach(function(evt) {
+    		hexColorInput.addEventListener(evt, updateSelector);
+		});
+
+		function copyClipboard() {
+		  /* Get the text field */
+		  var copyText = document.getElementById("hex_input");
+
+		  copyText.select();
+		  copyText.setSelectionRange(0, 99999);
+
+		  navigator.clipboard.writeText(copyText.value);
+
+		  alert("Copied the color: " + copyText.value);
+		} 
+
+
+  	</script>
+
+</body>
+</html>
+
