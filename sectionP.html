@@ -30,12 +30,8 @@
 		<input
 		class="bg-grey-900"
 		id="hex_input" type="text">
-
-		<button
-
-		onclick="copyClipboard()">Copy to clipboard</button>
-
-		<button onclick="hexToRgb()">
+		<button onclick="copyClipboard()">Copy to clipboard</button>
+		<button onclick="hexToRGB()">
 		Transformar em RGB
 		</button>
 		</div>
@@ -49,20 +45,25 @@
 
 
 
-	var hex = "#e01b24";
-	var red = parseInt(hex[1]+hex[2],16);
-	var green = parseInt(hex[3]+hex[4],16);
-	var blue = parseInt(hex[5]+hex[6],16);
-	alert(red + ", " + green + ", " + blue);
-
-
-
-
 
   	var hexColorInput = document.getElementById('hex_input'),
     colorSelector = document.getElementById('color_selector');
 
 	var updateHex ;
+
+	function hexToRGB(){
+
+		var hex = document.getElementById("hex_input").value;
+
+		var red = parseInt(hex[1]+hex[2],16);
+		var green = parseInt(hex[3]+hex[4],16);
+		var blue = parseInt(hex[5]+hex[6],16);
+
+		alert(
+			"rgb("+ red + ", " + green + ", " + blue +")");
+
+	}
+
 
 	(updateHex = function () {
     	hexColorInput.value = colorSelector.value;
